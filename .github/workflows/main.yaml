@@ -24,6 +24,12 @@ jobs:
     - name: Build Angular App
       run: npm run build
 
+    - name: Set git global email
+      run: git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+
+    - name: Set git global username
+      run: git config --global user.name "${GITHUB_ACTOR}"
+
     - name: Deploy to gh pages
       run: |
         npx angular-cli-ghpages --dir=dist/idle-mmo-helper --no-silent
