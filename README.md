@@ -1,6 +1,5 @@
 # IdleMmoHelper
 
-[https://aimfornuts.github.io/idle-mmo-helper/"](IdleMMO-Helper){:target="_blank"}
 Access page: <a href="https://aimfornuts.github.io/idle-mmo-helper/" target="_blank">IdleMMO-Helper</a>
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3.
