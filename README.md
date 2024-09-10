@@ -1,6 +1,6 @@
 # IdleMmoHelper
 
-Access page: [https://aimfornuts.github.io/idle-mmo-helper/browser/](IdleMMO-Helper)
+Access page: [IdleMMO-Helper](https://aimfornuts.github.io/idle-mmo-helper/)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3.
 
