@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component'
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -10,9 +9,6 @@ import { HeaderComponent } from './header/header.component'
     RouterOutlet,
     HeaderComponent
   ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  templateUrl: './app.component.html'
 })
-export class AppComponent {
-  title = 'idle-mmo-helper';
-}
+export class AppComponent { }
