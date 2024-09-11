@@ -1,14 +1,12 @@
-<div class="tabs">
-  <button (click)="onTabSelected('main-page')">Main page</button>
-  <button (click)="onTabSelected('calculator')">Calculator</button>
+<div id="container">
+  <div id="logo"><img class="logo-image" src="/assets/images/logo.png" /></div>
+  <div id="links">
+    <div class="link" routerLinkActive="active" routerLink="main-page">
+      Main page
+    </div>
+    <div class="link" routerLinkActive="active" routerLink="calculator">
+      Calculator
+    </div>
+    <div class="link" routerLinkActive="active" routerLink="battle">Battle</div>
+  </div>
 </div>
-
-@if(activeTab === 'main-page'){
-<div>
-  <app-main-page></app-main-page>
-</div>
-} @if(activeTab === 'calculator'){
-<div>
-  <app-calculator></app-calculator>
-</div>
-}
