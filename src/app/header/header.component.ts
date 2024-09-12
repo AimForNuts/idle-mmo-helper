@@ -8,10 +8,10 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [RouterModule, MainPageComponent, CalculatorComponent],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  activeTab: string = 'main-page';
+  activeTab = 'main-page';
 
   onTabSelected(tabName: string) {
     this.activeTab = tabName;

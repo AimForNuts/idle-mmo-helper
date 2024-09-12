@@ -7,6 +7,6 @@ import { CalculatorComponent } from './calculator/calculator.component';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, CalculatorComponent],
-  templateUrl: './app.component.html',
+  templateUrl: './app.component.html'
 })
 export class AppComponent {}

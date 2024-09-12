@@ -1,23 +1,24 @@
 <div>
-  <input type="number" #num1 placeholder="Enter first number" />
-  <input type="number" #num2 placeholder="Enter second number" />
-  <br />
-  <button (click)="calculate(num1.valueAsNumber, num2.valueAsNumber, 'add')">
-    Add
-  </button>
-  <button
-    (click)="calculate(num1.valueAsNumber, num2.valueAsNumber, 'subtract')"
-  >
-    Subtract
-  </button>
-  <button
-    (click)="calculate(num1.valueAsNumber, num2.valueAsNumber, 'multiply')"
-  >
-    Multiply
-  </button>
-  <button (click)="calculate(num1.valueAsNumber, num2.valueAsNumber, 'divide')">
-    Divide
-  </button>
-  <br /><br />
-  <p>Result: {{ result }}</p>
+  <h2>XP Needed to Reach Target Level</h2>
+
+  <!-- Form to input current level, current XP, and target level -->
+  <div>
+    <label>Current Level:</label>
+    <input #currentLevel type="number" value="1" />
+
+    <label>Current XP:</label>
+    <input #currentXP type="number" value="0" />
+
+    <label>Target Level:</label>
+    <input #targetLevel type="number" value="100" />
+
+    <button (click)="calculateXP(currentLevel.valueAsNumber, currentXP.valueAsNumber, targetLevel.valueAsNumber)">Calculate</button>
+  </div>
+
+  <!-- Results -->
+  <ul>
+    <li *ngFor="let result of xpNeededResults">
+      Log: {{ result[0] }}, Total Logs Needed: {{ result[1] }}, Last Level: {{ result[2] }}, Time Will Take: {{ result[3] }}
+    </li>
+  </ul>
 </div>

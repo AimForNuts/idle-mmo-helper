@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './main-page.component.scss'
 })
 export class MainPageComponent {
-  activeTab: string = 'main-page';
+  activeTab = 'main-page';
 
   onTabSelected(tabName: string) {
     this.activeTab = tabName;
