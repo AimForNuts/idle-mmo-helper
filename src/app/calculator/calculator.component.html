@@ -4,9 +4,11 @@
   <!-- Form to input current level, current XP, and target level -->
   <div>
     <select (change)="onChange($event)" [(ngModel)]="selectedProfession">
-      <option *ngFor="let profession of professions" [value]="profession">
-        {{ profession }}
-      </option>
+      @for (profession of professions; track profession) {
+        <option [value]="profession">
+          {{ profession }}
+        </option>
+      }
     </select>
 
     <label>Current Level:</label>
@@ -23,9 +25,12 @@
 
   <!-- Results -->
   <ul>
-    <li *ngFor="let result of xpNeededResults">
-      Material: {{ result[0] }}, Total materials needed: {{ result[1] }}, Last level: {{ result[2] }}, Time will take: {{ result[3] }}
-    </li>
+    @for (xpNeededResult of xpNeededResults; track xpNeededResult) {
+      <li>
+        Material: {{ xpNeededResult[0] }}, Total materials needed: {{ xpNeededResult[1] }}, Last level: {{ xpNeededResult[2] }}, Time will take:
+        {{ xpNeededResult[3] }}
+      </li>
+    }
     @if (xpNeededResults.length > 0) {
       <div>Total time for all actions: {{ totalTime }}</div>
     }

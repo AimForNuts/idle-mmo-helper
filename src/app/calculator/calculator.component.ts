@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { IMaterial } from './entities/interfaces/material.interface';
 import { IExperience } from './entities/interfaces/experience.interface';
-import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IResourcesNeeeded } from './entities/interfaces/resources-needed.interface';
 
 @Component({
   selector: 'app-calculator',
   standalone: true,
-  imports: [NgFor, FormsModule],
+  imports: [FormsModule],
   templateUrl: './calculator.component.html',
   styleUrl: './calculator.component.scss',
 })
@@ -69,6 +68,61 @@ export class CalculatorComponent {
       this.createMaterial('Stingray', 60, [{ fishing: 35, dexterity: 11 }], 40000, 0, [this.createResourceNeeded('Eldritch Bait', 1, 16)]),
       this.createMaterial('Lantern Fish', 80, [{ fishing: 40, dexterity: 13 }], 41000, 0, [this.createResourceNeeded('Arcane Bait', 1, 25)]),
       this.createMaterial('Great White Shark', 90, [{ fishing: 55, dexterity: 16 }], 45000, 0, [this.createResourceNeeded('Arcane Bait', 1, 25)]),
+    ];
+
+    this.cooking = [
+      this.createMaterial('Cooked Cod', 1, [{ cooking: 2, dexterity: 1 }], 8000, 0, [
+        this.createResourceNeeded('Cod', 1, 0),
+        this.createResourceNeeded('Coal', 1, 0),
+      ]),
+      this.createMaterial('Cooked Salmon', 3, [{ cooking: 4, dexterity: 2 }], 12000, 0, [
+        this.createResourceNeeded('Salmon', 1, 0),
+        this.createResourceNeeded('Coal', 1, 0),
+      ]),
+      this.createMaterial('Cooked Tuna', 5, [{ cooking: 6, dexterity: 3 }], 14000, 0, [
+        this.createResourceNeeded('Tuna', 1, 0),
+        this.createResourceNeeded('Coal', 1, 0),
+      ]),
+      this.createMaterial('Cooked Trout', 8, [{ cooking: 8, dexterity: 4 }], 17000, 0, [
+        this.createResourceNeeded('Trout', 1, 0),
+        this.createResourceNeeded('Coal', 1, 0),
+      ]),
+      this.createMaterial('Cooked Perch', 11, [{ cooking: 10, dexterity: 5 }], 19000, 0, [
+        this.createResourceNeeded('Perch', 1, 0),
+        this.createResourceNeeded('Coal', 1, 0),
+      ]),
+      this.createMaterial('Cooked Herring', 11, [{ cooking: 13, dexterity: 6 }], 22000, 0, [
+        this.createResourceNeeded('Herring', 1, 0),
+        this.createResourceNeeded('Coal', 1, 0),
+      ]),
+      this.createMaterial('Cooked Sardines', 25, [{ cooking: 16, dexterity: 7 }], 25000, 0, [
+        this.createResourceNeeded('Sardines', 1, 0),
+        this.createResourceNeeded('Coal', 1, 0),
+      ]),
+      this.createMaterial('Cooked Lobster', 30, [{ cooking: 19, dexterity: 8 }], 28000, 0, [
+        this.createResourceNeeded('Lobster', 1, 0),
+        this.createResourceNeeded('Coal', 1, 0),
+      ]),
+      this.createMaterial('Cooked Crab', 40, [{ cooking: 22, dexterity: 9 }], 30000, 0, [
+        this.createResourceNeeded('Crab', 1, 0),
+        this.createResourceNeeded('Coal', 1, 0),
+      ]),
+      this.createMaterial('Cooked Turtle', 50, [{ cooking: 27, dexterity: 10 }], 30000, 0, [
+        this.createResourceNeeded('Turtle', 1, 0),
+        this.createResourceNeeded('Coal', 1, 0),
+      ]),
+      this.createMaterial('Cooked Stingray', 60, [{ cooking: 35, dexterity: 11 }], 40000, 0, [
+        this.createResourceNeeded('Stingray', 1, 0),
+        this.createResourceNeeded('Coal', 1, 0),
+      ]),
+      this.createMaterial('Cooked Lantern Fish', 80, [{ cooking: 40, dexterity: 13 }], 42000, 0, [
+        this.createResourceNeeded('Lantern Fish', 1, 0),
+        this.createResourceNeeded('Coal', 1, 0),
+      ]),
+      this.createMaterial('Cooked Great White Shark', 90, [{ cooking: 55, dexterity: 14 }], 55000, 0, [
+        this.createResourceNeeded('Great White Shark', 1, 0),
+        this.createResourceNeeded('Coal', 1, 0),
+      ]),
     ];
 
     this.xp_needed = [
@@ -172,6 +226,9 @@ export class CalculatorComponent {
           currentSkill = this.smelting;
           break;
         case 'Cooking':
+          const resultCooking = this.cookingStrategy(availableResources);
+          currentMaterial = resultCooking.currentMaterial;
+          currentMaterialXP = resultCooking.currentMaterialXP;
           currentSkill = this.cooking;
           break;
         case 'Forge':
@@ -248,6 +305,16 @@ export class CalculatorComponent {
     }, availableResources[0]);
 
     return { currentMaterial: currentFish, currentMaterialXP: currentFish.experience[0]?.fishing || 0 };
+  }
+
+  private cookingStrategy(availableResources: IMaterial[]): { currentMaterial: IMaterial; currentMaterialXP: number } {
+    const currentRecipe: IMaterial = availableResources.reduce((bestRecipe, log) => {
+      const logXP = log.experience[0]?.cooking || 0;
+      const bestLogXP = bestRecipe?.experience[0]?.cooking || 0;
+      return logXP > bestLogXP ? log : bestRecipe;
+    }, availableResources[0]);
+
+    return { currentMaterial: currentRecipe, currentMaterialXP: currentRecipe.experience[0]?.cooking || 0 };
   }
 
   private createMaterial(
