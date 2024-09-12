@@ -24,7 +24,7 @@
   <!-- Results -->
   <ul>
     <li *ngFor="let result of xpNeededResults">
-      Log: {{ result[0] }}, Total Logs Needed: {{ result[1] }}, Last Level: {{ result[2] }}, Time Will Take: {{ result[3] }}
+      Material: {{ result[0] }}, Total materials needed: {{ result[1] }}, Last level: {{ result[2] }}, Time will take: {{ result[3] }}
     </li>
     @if (xpNeededResults.length > 0) {
       <div>Total time for all actions: {{ totalTime }}</div>

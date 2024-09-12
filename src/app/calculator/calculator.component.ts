@@ -207,7 +207,7 @@ export class CalculatorComponent {
     let totalTimeMs = 0;
     // Push the results for each log type
     for (const [materialName, data] of Object.entries(materialUsage)) {
-      totalTimeMs = data.timeTaken;
+      totalTimeMs += data.timeTaken;
       results.push([materialName, data.totalAmount, data.lastLevel, this.msToTime(data.timeTaken)]);
     }
 
