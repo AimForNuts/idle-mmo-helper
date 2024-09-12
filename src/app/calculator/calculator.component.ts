@@ -298,7 +298,7 @@ export class CalculatorComponent {
       if (currentMaterial.resourcesNeeded.length > 0) {
         materialUsage[currentMaterial.name].resourcesNeeded = currentMaterial.resourcesNeeded.map(resource => ({
           ...resource,
-          quantity: resource.quantity * materialNeeded,
+          quantity: resource.quantity * materialUsage[currentMaterial.name].totalAmount,
         }));
       }
 
