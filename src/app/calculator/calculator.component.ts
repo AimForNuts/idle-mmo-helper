@@ -3,11 +3,12 @@ import { IMaterial } from './entities/interfaces/material.interface';
 import { IExperience } from './entities/interfaces/experience.interface';
 import { FormsModule } from '@angular/forms';
 import { IResourcesNeeeded } from './entities/interfaces/resources-needed.interface';
+import { CheckboxComponent } from '../checkbox/checkbox.component';
 
 @Component({
   selector: 'app-calculator',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CheckboxComponent],
   templateUrl: './calculator.component.html',
   styleUrl: './calculator.component.scss',
 })

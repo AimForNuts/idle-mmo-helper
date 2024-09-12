@@ -1,0 +1,12 @@
+<form [formGroup]="form">
+  <label>
+    <input type="checkbox" formControlName="checkboxValue" />
+    Check me!
+  </label>
+</form>
+
+@if (form.controls['checkboxValue'].value) {
+  <p>The checkbox is checked!</p>
+} @else {
+  <p>The checkbox is not checked!</p>
+}
