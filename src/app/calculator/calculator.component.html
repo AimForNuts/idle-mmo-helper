@@ -28,16 +28,18 @@
   <ul>
     @for (xpNeededResult of xpNeededResults; track xpNeededResult) {
       <li>
-        Material: {{ xpNeededResult.baseMaterial }}, Total materials needed: {{ xpNeededResult.totalMaterial }}, Last level:
-        {{ xpNeededResult.lastLevel }}, Time will take: {{ xpNeededResult.time }},
+        <div>Material: {{ xpNeededResult.baseMaterial }}</div>
+        <div>Total materials needed: {{ xpNeededResult.totalMaterial }}</div>
+        <div>Last level: {{ xpNeededResult.lastLevel }}</div>
+        <div>Time will take: {{ xpNeededResult.time }}</div>
         @if (xpNeededResult.resourcesNeeded[0]) {
-          {{ xpNeededResult.resourcesNeeded[0].name }}: {{ xpNeededResult.resourcesNeeded[0].quantity }}
+          <div>{{ xpNeededResult.resourcesNeeded[0].name }}: {{ xpNeededResult.resourcesNeeded[0].quantity }}</div>
         }
         @if (xpNeededResult.resourcesNeeded[1]) {
-          {{ xpNeededResult.resourcesNeeded[1].name }}: {{ xpNeededResult.resourcesNeeded[1].quantity }}
+          <div>{{ xpNeededResult.resourcesNeeded[1].name }}: {{ xpNeededResult.resourcesNeeded[1].quantity }}</div>
         }
         @if (xpNeededResult.resourcesNeeded[2]) {
-          {{ xpNeededResult.resourcesNeeded[2].name }}: {{ xpNeededResult.resourcesNeeded[2].quantity }}
+          <div>{{ xpNeededResult.resourcesNeeded[2].name }}: {{ xpNeededResult.resourcesNeeded[2].quantity }}</div>
         }
       </li>
     }

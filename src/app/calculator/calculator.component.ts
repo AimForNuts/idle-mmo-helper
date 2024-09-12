@@ -296,7 +296,10 @@ export class CalculatorComponent {
       materialUsage[currentMaterial.name].timeTaken += timeForMaterial;
       materialUsage[currentMaterial.name].lastLevel = currentLevel;
       if (currentMaterial.resourcesNeeded.length > 0) {
-        materialUsage[currentMaterial.name].resourcesNeeded = currentMaterial.resourcesNeeded;
+        materialUsage[currentMaterial.name].resourcesNeeded = currentMaterial.resourcesNeeded.map(resource => ({
+          ...resource,
+          quantity: resource.quantity * materialNeeded,
+        }));
       }
 
       // Move to the next level
