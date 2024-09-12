@@ -88,11 +88,11 @@ export class CalculatorComponent {
     this.xpNeededResults = [];
   }
 
-  public calculateXP(currentLevel: number, currentXP: number, targetLevel: number): void {
-    this.xpNeededResults = this.calculateXPNeeded(currentLevel, currentXP, targetLevel);
+  public calculateXP(currentLevel: number, expNeeded: number, targetLevel: number): void {
+    this.xpNeededResults = this.calculateXPNeeded(currentLevel, expNeeded, targetLevel);
   }
 
-  private calculateXPNeeded(currentLevel: number, currentXP: number, targetLevel: number): [string, number, number, string][] {
+  private calculateXPNeeded(currentLevel: number, expNeeded: number, targetLevel: number): [string, number, number, string][] {
     this.xpNeededResults = [];
     const results: [string, number, number, string][] = [];
     const materialUsage: { [key: string]: { totalAmount: number; timeTaken: number; lastLevel: number } } = {};
@@ -127,6 +127,7 @@ export class CalculatorComponent {
     // METHOD ONLY FOR WOODCUTTING - NEED TO ADAPT FOR OTHER PROFESSIONS
     // Alchemy needs to take into consideration prices
     // Smelting, Cooking and Forge needs to take into consideration time from Woodcutting, Mining and Fishing
+    const currentXP = this.xp_needed[currentLevel - 1] - expNeeded;
     let xpToNextLevel = this.xp_needed[currentLevel - 1] - currentXP;
     if (xpToNextLevel <= 0) xpToNextLevel = 0; // Handle edge case where current XP might exceed required XP
 
