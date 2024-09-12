@@ -29,8 +29,16 @@
     @for (xpNeededResult of xpNeededResults; track xpNeededResult) {
       <li>
         Material: {{ xpNeededResult.baseMaterial }}, Total materials needed: {{ xpNeededResult.totalMaterial }}, Last level:
-        {{ xpNeededResult.lastLevel }}, Time will take: {{ xpNeededResult.time }}, Material 1: {{ xpNeededResult.totalResource1 }}, Material 2:
-        {{ xpNeededResult.totalResource2 }},Material 3: {{ xpNeededResult.totalResource3 }}
+        {{ xpNeededResult.lastLevel }}, Time will take: {{ xpNeededResult.time }},
+        @if (xpNeededResult.resourcesNeeded[0]) {
+          {{ xpNeededResult.resourcesNeeded[0].name }}: {{ xpNeededResult.resourcesNeeded[0].quantity }}
+        }
+        @if (xpNeededResult.resourcesNeeded[1]) {
+          {{ xpNeededResult.resourcesNeeded[1].name }}: {{ xpNeededResult.resourcesNeeded[1].quantity }}
+        }
+        @if (xpNeededResult.resourcesNeeded[2]) {
+          {{ xpNeededResult.resourcesNeeded[2].name }}: {{ xpNeededResult.resourcesNeeded[2].quantity }}
+        }
       </li>
     }
     @if (xpNeededResults.length > 0) {

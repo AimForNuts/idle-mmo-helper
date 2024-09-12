@@ -191,8 +191,7 @@ export class CalculatorComponent {
   private calculateXPNeeded(currentLevel: number, expNeeded: number, targetLevel: number): IResult[] {
     this.xpNeededResults = [];
     const results: IResult[] = [];
-    const materialUsage: { [key: string]: { totalAmount: number; timeTaken: number; lastLevel: number; resourcesNeeded?: IResourcesNeeeded[] } } =
-      {};
+    const materialUsage: { [key: string]: { totalAmount: number; timeTaken: number; lastLevel: number; resourcesNeeded: IResourcesNeeeded[] } } = {};
     let currentSkill: IMaterial[] = [];
 
     switch (this.selectedProfession) {
@@ -320,9 +319,7 @@ export class CalculatorComponent {
         totalMaterial: data.totalAmount,
         lastLevel: data.lastLevel,
         time: this.msToTime(data.timeTaken),
-        totalResource1: data.resourcesNeeded && data.resourcesNeeded[0] ? data.totalAmount * data.resourcesNeeded[0].quantity : undefined,
-        totalResource2: data.resourcesNeeded && data.resourcesNeeded[1] ? data.totalAmount * data.resourcesNeeded[1].quantity : undefined,
-        totalResource3: data.resourcesNeeded && data.resourcesNeeded[2] ? data.totalAmount * data.resourcesNeeded[2].quantity : undefined,
+        resourcesNeeded: data.resourcesNeeded,
       };
       results.push(materialToUse);
     }
