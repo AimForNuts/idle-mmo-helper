@@ -3,6 +3,12 @@
 
   <!-- Form to input current level, current XP, and target level -->
   <div>
+    <select (change)="onChange($event)" [(ngModel)]="selectedProfession">
+      <option *ngFor="let profession of professions" [value]="profession">
+        {{ profession }}
+      </option>
+    </select>
+
     <label>Current Level:</label>
     <input #currentLevel type="number" value="1" />
 
@@ -20,5 +26,11 @@
     <li *ngFor="let result of xpNeededResults">
       Log: {{ result[0] }}, Total Logs Needed: {{ result[1] }}, Last Level: {{ result[2] }}, Time Will Take: {{ result[3] }}
     </li>
+    @if (xpNeededResults.length > 0) {
+      <div>Total time for all actions: {{ totalTime }}</div>
+    }
   </ul>
+  @if (xpNeededResults.length === 0) {
+    <div>{{ noResourcesError }}</div>
+  }
 </div>

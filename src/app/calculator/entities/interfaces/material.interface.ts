@@ -1,4 +1,5 @@
 import { IExperience } from './experience.interface';
+import { IResourcesNeeeded } from './resources-needed.interface';
 
 export interface IMaterial {
   name: string;
@@ -6,5 +7,5 @@ export interface IMaterial {
   experience: IExperience[];
   unmodifiedWaitTimeMs: number;
   actualWaitTimeMs: number;
-  cost: number;
+  resourcesNeeded: IResourcesNeeeded[];
 }
