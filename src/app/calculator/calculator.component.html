@@ -28,8 +28,9 @@
   <ul>
     @for (xpNeededResult of xpNeededResults; track xpNeededResult) {
       <li>
-        Material: {{ xpNeededResult[0] }}, Total materials needed: {{ xpNeededResult[1] }}, Last level: {{ xpNeededResult[2] }}, Time will take:
-        {{ xpNeededResult[3] }}
+        Material: {{ xpNeededResult.baseMaterial }}, Total materials needed: {{ xpNeededResult.totalMaterial }}, Last level:
+        {{ xpNeededResult.lastLevel }}, Time will take: {{ xpNeededResult.time }}, Material 1: {{ xpNeededResult.totalResource1 }}, Material 2:
+        {{ xpNeededResult.totalResource2 }},Material 3: {{ xpNeededResult.totalResource3 }}
       </li>
     }
     @if (xpNeededResults.length > 0) {

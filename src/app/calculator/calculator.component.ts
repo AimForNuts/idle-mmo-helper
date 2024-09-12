@@ -4,6 +4,7 @@ import { IExperience } from './entities/interfaces/experience.interface';
 import { FormsModule } from '@angular/forms';
 import { IResourcesNeeeded } from './entities/interfaces/resources-needed.interface';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
+import { IResult } from './entities/interfaces/result.interface';
 
 @Component({
   selector: 'app-calculator',
@@ -13,7 +14,7 @@ import { CheckboxComponent } from '../checkbox/checkbox.component';
   styleUrl: './calculator.component.scss',
 })
 export class CalculatorComponent {
-  public xpNeededResults: [string, number, number, string][] = [];
+  public xpNeededResults: IResult[] = [];
   public professions: string[] = [];
   public selectedProfession: string = '';
   public noResourcesError: string = '';
@@ -180,16 +181,18 @@ export class CalculatorComponent {
     const target = event.target as HTMLSelectElement;
     this.selectedProfession = target.value;
     this.xpNeededResults = [];
+    this.noResourcesError = '';
   }
 
   public calculateXP(currentLevel: number, expNeeded: number, targetLevel: number): void {
     this.xpNeededResults = this.calculateXPNeeded(currentLevel, expNeeded, targetLevel);
   }
 
-  private calculateXPNeeded(currentLevel: number, expNeeded: number, targetLevel: number): [string, number, number, string][] {
+  private calculateXPNeeded(currentLevel: number, expNeeded: number, targetLevel: number): IResult[] {
     this.xpNeededResults = [];
-    const results: [string, number, number, string][] = [];
-    const materialUsage: { [key: string]: { totalAmount: number; timeTaken: number; lastLevel: number } } = {};
+    const results: IResult[] = [];
+    const materialUsage: { [key: string]: { totalAmount: number; timeTaken: number; lastLevel: number; resourcesNeeded?: IResourcesNeeeded[] } } =
+      {};
     let currentSkill: IMaterial[] = [];
 
     switch (this.selectedProfession) {
@@ -288,11 +291,14 @@ export class CalculatorComponent {
       const timeForMaterial = materialNeeded * (currentMaterial.unmodifiedWaitTimeMs || 0);
 
       if (!materialUsage[currentMaterial.name]) {
-        materialUsage[currentMaterial.name] = { totalAmount: 0, timeTaken: 0, lastLevel: currentLevel };
+        materialUsage[currentMaterial.name] = { totalAmount: 0, timeTaken: 0, lastLevel: currentLevel, resourcesNeeded: [] };
       }
       materialUsage[currentMaterial.name].totalAmount += materialNeeded;
       materialUsage[currentMaterial.name].timeTaken += timeForMaterial;
       materialUsage[currentMaterial.name].lastLevel = currentLevel;
+      if (currentMaterial.resourcesNeeded.length > 0) {
+        materialUsage[currentMaterial.name].resourcesNeeded = currentMaterial.resourcesNeeded;
+      }
 
       // Move to the next level
       currentLevel += 1;
@@ -308,7 +314,17 @@ export class CalculatorComponent {
     // Push the results for each log type
     for (const [materialName, data] of Object.entries(materialUsage)) {
       totalTimeMs += data.timeTaken;
-      results.push([materialName, data.totalAmount, data.lastLevel, this.msToTime(data.timeTaken)]);
+
+      let materialToUse: IResult = {
+        baseMaterial: materialName,
+        totalMaterial: data.totalAmount,
+        lastLevel: data.lastLevel,
+        time: this.msToTime(data.timeTaken),
+        totalResource1: data.resourcesNeeded && data.resourcesNeeded[0] ? data.totalAmount * data.resourcesNeeded[0].quantity : undefined,
+        totalResource2: data.resourcesNeeded && data.resourcesNeeded[1] ? data.totalAmount * data.resourcesNeeded[1].quantity : undefined,
+        totalResource3: data.resourcesNeeded && data.resourcesNeeded[2] ? data.totalAmount * data.resourcesNeeded[2].quantity : undefined,
+      };
+      results.push(materialToUse);
     }
 
     this.totalTime = this.msToTime(totalTimeMs, true);
