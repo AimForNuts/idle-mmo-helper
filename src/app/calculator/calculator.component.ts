@@ -74,55 +74,94 @@ export class CalculatorComponent {
     this.cooking = [
       this.createMaterial('Cooked Cod', 1, [{ cooking: 2, dexterity: 1 }], 8000, 0, [
         this.createResourceNeeded('Cod', 1, 0),
-        this.createResourceNeeded('Coal', 1, 0),
+        this.createResourceNeeded('Coal ore', 1, 0),
       ]),
       this.createMaterial('Cooked Salmon', 3, [{ cooking: 4, dexterity: 2 }], 12000, 0, [
         this.createResourceNeeded('Salmon', 1, 0),
-        this.createResourceNeeded('Coal', 1, 0),
+        this.createResourceNeeded('Coal ore', 1, 0),
       ]),
       this.createMaterial('Cooked Tuna', 5, [{ cooking: 6, dexterity: 3 }], 14000, 0, [
         this.createResourceNeeded('Tuna', 1, 0),
-        this.createResourceNeeded('Coal', 1, 0),
+        this.createResourceNeeded('Coal ore', 1, 0),
       ]),
       this.createMaterial('Cooked Trout', 8, [{ cooking: 8, dexterity: 4 }], 17000, 0, [
         this.createResourceNeeded('Trout', 1, 0),
-        this.createResourceNeeded('Coal', 1, 0),
+        this.createResourceNeeded('Coal ore', 1, 0),
       ]),
       this.createMaterial('Cooked Perch', 11, [{ cooking: 10, dexterity: 5 }], 19000, 0, [
         this.createResourceNeeded('Perch', 1, 0),
-        this.createResourceNeeded('Coal', 1, 0),
+        this.createResourceNeeded('Coal ore', 1, 0),
       ]),
       this.createMaterial('Cooked Herring', 11, [{ cooking: 13, dexterity: 6 }], 22000, 0, [
         this.createResourceNeeded('Herring', 1, 0),
-        this.createResourceNeeded('Coal', 1, 0),
+        this.createResourceNeeded('Coal ore', 1, 0),
       ]),
       this.createMaterial('Cooked Sardines', 25, [{ cooking: 16, dexterity: 7 }], 25000, 0, [
         this.createResourceNeeded('Sardines', 1, 0),
-        this.createResourceNeeded('Coal', 1, 0),
+        this.createResourceNeeded('Coal ore', 1, 0),
       ]),
       this.createMaterial('Cooked Lobster', 30, [{ cooking: 19, dexterity: 8 }], 28000, 0, [
         this.createResourceNeeded('Lobster', 1, 0),
-        this.createResourceNeeded('Coal', 1, 0),
+        this.createResourceNeeded('Coal ore', 1, 0),
       ]),
       this.createMaterial('Cooked Crab', 40, [{ cooking: 22, dexterity: 9 }], 30000, 0, [
         this.createResourceNeeded('Crab', 1, 0),
-        this.createResourceNeeded('Coal', 1, 0),
+        this.createResourceNeeded('Coal ore', 1, 0),
       ]),
       this.createMaterial('Cooked Turtle', 50, [{ cooking: 27, dexterity: 10 }], 30000, 0, [
         this.createResourceNeeded('Turtle', 1, 0),
-        this.createResourceNeeded('Coal', 1, 0),
+        this.createResourceNeeded('Coal ore', 1, 0),
       ]),
       this.createMaterial('Cooked Stingray', 60, [{ cooking: 35, dexterity: 11 }], 40000, 0, [
         this.createResourceNeeded('Stingray', 1, 0),
-        this.createResourceNeeded('Coal', 1, 0),
+        this.createResourceNeeded('Coal ore', 1, 0),
       ]),
       this.createMaterial('Cooked Lantern Fish', 80, [{ cooking: 40, dexterity: 13 }], 42000, 0, [
         this.createResourceNeeded('Lantern Fish', 1, 0),
-        this.createResourceNeeded('Coal', 1, 0),
+        this.createResourceNeeded('Coal ore', 1, 0),
       ]),
       this.createMaterial('Cooked Great White Shark', 90, [{ cooking: 55, dexterity: 14 }], 55000, 0, [
         this.createResourceNeeded('Great White Shark', 1, 0),
-        this.createResourceNeeded('Coal', 1, 0),
+        this.createResourceNeeded('Coal ore', 1, 0),
+      ]),
+    ];
+
+    this.forge = [
+      this.createMaterial('Oak Bow', 1, [{ forge: 10, strength: 2 }], 25000, 0, [
+        this.createResourceNeeded('Oak Log', 10, 0),
+        this.createResourceNeeded('Coal ore', 5, 0),
+      ]),
+      this.createMaterial('Yew Bow', 5, [{ forge: 20, strength: 3 }], 35000, 0, [
+        this.createResourceNeeded('Yew Log', 10, 0),
+        this.createResourceNeeded('Coal ore', 5, 0),
+      ]),
+      this.createMaterial('Spruce Bow', 10, [{ forge: 30, strength: 4 }], 40000, 0, [
+        this.createResourceNeeded('Spruce Log', 10, 0),
+        this.createResourceNeeded('Coal ore', 5, 0),
+      ]),
+      this.createMaterial('Birch Bow', 15, [{ forge: 40, strength: 5 }], 45000, 0, [
+        this.createResourceNeeded('Birch Log', 10, 0),
+        this.createResourceNeeded('Coal ore', 5, 0),
+      ]),
+      this.createMaterial('Banyan Bow', 25, [{ forge: 50, strength: 7 }], 50000, 0, [
+        this.createResourceNeeded('Banyan Log', 10, 0),
+        this.createResourceNeeded('Coal ore', 5, 0),
+      ]),
+      this.createMaterial('Maple Bow', 35, [{ forge: 60, strength: 8 }], 55000, 0, [
+        this.createResourceNeeded('Maple Log', 10, 0),
+        this.createResourceNeeded('Coal ore', 5, 0),
+      ]),
+      this.createMaterial('Willow Bow', 50, [{ forge: 70, strength: 10 }], 60000, 0, [
+        this.createResourceNeeded('Willow Log', 10, 0),
+        this.createResourceNeeded('Coal ore', 5, 0),
+      ]),
+      this.createMaterial('Mahogany Bow', 65, [{ forge: 80, strength: 12 }], 65000, 0, [
+        this.createResourceNeeded('Mahogany Log', 10, 0),
+        this.createResourceNeeded('Coal ore', 5, 0),
+      ]),
+      this.createMaterial('Mystical Bow', 70, [{ forge: 100, strength: 13 }], 70000, 0, [
+        this.createResourceNeeded('Mystical Log', 10, 0),
+        this.createResourceNeeded('Coal ore', 5, 0),
       ]),
     ];
 
@@ -232,6 +271,9 @@ export class CalculatorComponent {
           currentSkill = this.cooking;
           break;
         case 'Forge':
+          const resultForgin = this.forgingStrategy(availableResources);
+          currentMaterial = resultForgin.currentMaterial;
+          currentMaterialXP = resultForgin.currentMaterialXP + resultForgin.currentMaterialXP * 0.1;
           currentSkill = this.forge;
           break;
         default:
@@ -276,45 +318,55 @@ export class CalculatorComponent {
 
   private woodcuttingStrategy(availableResources: IMaterial[]): { currentMaterial: IMaterial; currentMaterialXP: number } {
     // Find the most efficient log (the one with the highest XP per log)
-    const currentLog: IMaterial = availableResources.reduce((bestLog, log) => {
-      const logXP = log.experience[0]?.woodcutting || 0;
-      const bestLogXP = bestLog?.experience[0]?.woodcutting || 0;
-      return logXP > bestLogXP ? log : bestLog;
+    const currentMaterial: IMaterial = availableResources.reduce((bestMaterial, material) => {
+      const materialXP = material.experience[0]?.woodcutting || 0;
+      const bestMaterialXP = bestMaterial?.experience[0]?.woodcutting || 0;
+      return materialXP > bestMaterialXP ? material : bestMaterial;
     }, availableResources[0]);
 
-    return { currentMaterial: currentLog, currentMaterialXP: currentLog.experience[0]?.woodcutting || 0 };
+    return { currentMaterial: currentMaterial, currentMaterialXP: currentMaterial.experience[0]?.woodcutting || 0 };
   }
 
   private miningStrategy(availableResources: IMaterial[]): { currentMaterial: IMaterial; currentMaterialXP: number } {
     // Find the most efficient ore (the one with the highest XP per ore)
-    const currentOre: IMaterial = availableResources.reduce((bestOre, log) => {
-      const logXP = log.experience[0]?.mining || 0;
-      const bestLogXP = bestOre?.experience[0]?.mining || 0;
-      return logXP > bestLogXP ? log : bestOre;
+    const currentMaterial: IMaterial = availableResources.reduce((bestMaterial, material) => {
+      const materialXP = material.experience[0]?.mining || 0;
+      const bestMaterialXP = bestMaterial?.experience[0]?.mining || 0;
+      return materialXP > bestMaterialXP ? material : bestMaterial;
     }, availableResources[0]);
 
-    return { currentMaterial: currentOre, currentMaterialXP: currentOre.experience[0]?.mining || 0 };
+    return { currentMaterial: currentMaterial, currentMaterialXP: currentMaterial.experience[0]?.mining || 0 };
   }
 
   // TODO: calculate profit per hour on fishing + selling to vendor
   private fishingStrategy(availableResources: IMaterial[]): { currentMaterial: IMaterial; currentMaterialXP: number } {
-    const currentFish: IMaterial = availableResources.reduce((bestFish, log) => {
-      const logXP = log.experience[0]?.fishing || 0;
-      const bestLogXP = bestFish?.experience[0]?.fishing || 0;
-      return logXP > bestLogXP ? log : bestFish;
+    const currentMaterial: IMaterial = availableResources.reduce((bestMaterial, material) => {
+      const materialXP = material.experience[0]?.fishing || 0;
+      const bestMaterialXP = bestMaterial?.experience[0]?.fishing || 0;
+      return materialXP > bestMaterialXP ? material : bestMaterial;
     }, availableResources[0]);
 
-    return { currentMaterial: currentFish, currentMaterialXP: currentFish.experience[0]?.fishing || 0 };
+    return { currentMaterial: currentMaterial, currentMaterialXP: currentMaterial.experience[0]?.fishing || 0 };
   }
 
   private cookingStrategy(availableResources: IMaterial[]): { currentMaterial: IMaterial; currentMaterialXP: number } {
-    const currentRecipe: IMaterial = availableResources.reduce((bestRecipe, log) => {
-      const logXP = log.experience[0]?.cooking || 0;
-      const bestLogXP = bestRecipe?.experience[0]?.cooking || 0;
-      return logXP > bestLogXP ? log : bestRecipe;
+    const currentMaterial: IMaterial = availableResources.reduce((bestMaterial, material) => {
+      const materialXP = material.experience[0]?.cooking || 0;
+      const bestMaterialXP = bestMaterial?.experience[0]?.cooking || 0;
+      return materialXP > bestMaterialXP ? material : bestMaterial;
     }, availableResources[0]);
 
-    return { currentMaterial: currentRecipe, currentMaterialXP: currentRecipe.experience[0]?.cooking || 0 };
+    return { currentMaterial: currentMaterial, currentMaterialXP: currentMaterial.experience[0]?.cooking || 0 };
+  }
+
+  private forgingStrategy(availableResources: IMaterial[]): { currentMaterial: IMaterial; currentMaterialXP: number } {
+    const currentMaterial: IMaterial = availableResources.reduce((bestMaterial, material) => {
+      const materialXP = material.experience[0]?.forge || 0;
+      const bestMaterialXP = bestMaterial?.experience[0]?.forge || 0;
+      return materialXP > bestMaterialXP ? material : bestMaterial;
+    }, availableResources[0]);
+
+    return { currentMaterial: currentMaterial, currentMaterialXP: currentMaterial.experience[0]?.forge || 0 };
   }
 
   private createMaterial(
