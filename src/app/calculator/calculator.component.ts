@@ -179,10 +179,9 @@ export class CalculatorComponent {
         break;
     }
 
-    // METHOD ONLY FOR WOODCUTTING - NEED TO ADAPT FOR OTHER PROFESSIONS
     // Alchemy needs to take into consideration prices
     // Smelting, Cooking and Forge needs to take into consideration time from Woodcutting, Mining and Fishing
-    const currentXP = this.xp_needed[currentLevel - 1] - expNeeded;
+    let currentXP = this.xp_needed[currentLevel - 1] - expNeeded;
     let xpToNextLevel = this.xp_needed[currentLevel - 1] - currentXP;
     if (xpToNextLevel <= 0) xpToNextLevel = 0; // Handle edge case where current XP might exceed required XP
 
@@ -229,7 +228,7 @@ export class CalculatorComponent {
         case 'Cooking':
           const resultCooking = this.cookingStrategy(availableResources);
           currentMaterial = resultCooking.currentMaterial;
-          currentMaterialXP = resultCooking.currentMaterialXP;
+          currentMaterialXP = resultCooking.currentMaterialXP + resultCooking.currentMaterialXP * 0.1;
           currentSkill = this.cooking;
           break;
         case 'Forge':
@@ -257,7 +256,7 @@ export class CalculatorComponent {
       currentLevel += 1;
 
       if (currentLevel <= targetLevel) {
-        xpToNextLevel = this.xp_needed[currentLevel - 1] - (currentXP + currentMaterialXP * materialNeeded);
+        xpToNextLevel = this.xp_needed[currentLevel - 1];
         // Handle edge case
         if (xpToNextLevel <= 0) xpToNextLevel = 0;
       }
