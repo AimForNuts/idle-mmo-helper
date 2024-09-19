@@ -302,6 +302,7 @@ export class CalculatorComponent {
         }));
       }
 
+      // TODO: remaining XP
       // Move to the next level
       currentLevel += 1;
 
@@ -313,15 +314,17 @@ export class CalculatorComponent {
     }
 
     let totalTimeMs = 0;
-    // Push the results for each log type
+    // Push the results for each material type
     for (const [materialName, data] of Object.entries(materialUsage)) {
-      totalTimeMs += data.timeTaken;
+      // Only 20hours are efficient
+      var offSet = data.timeTaken + Math.floor((data.timeTaken - 1) / 20) * 4;
+      totalTimeMs += offSet;
 
       let materialToUse: IResult = {
         baseMaterial: materialName,
         totalMaterial: data.totalAmount,
         lastLevel: data.lastLevel,
-        time: this.msToTime(data.timeTaken),
+        time: this.msToTime(offSet),
         resourcesNeeded: data.resourcesNeeded,
       };
       results.push(materialToUse);
