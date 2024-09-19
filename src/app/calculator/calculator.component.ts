@@ -316,21 +316,20 @@ export class CalculatorComponent {
     let totalTimeMs = 0;
     // Push the results for each material type
     for (const [materialName, data] of Object.entries(materialUsage)) {
-      // Only 20hours are efficient
-      var offSet = data.timeTaken + Math.floor((data.timeTaken - 1) / 20) * 4;
-      totalTimeMs += offSet;
+      totalTimeMs += data.timeTaken;
 
       let materialToUse: IResult = {
         baseMaterial: materialName,
         totalMaterial: data.totalAmount,
         lastLevel: data.lastLevel,
-        time: this.msToTime(offSet),
+        time: this.msToTime(data.timeTaken),
         resourcesNeeded: data.resourcesNeeded,
       };
       results.push(materialToUse);
     }
 
-    this.totalTime = this.msToTime(totalTimeMs, true);
+    var offSet = totalTimeMs > 0 ? totalTimeMs + Math.floor((totalTimeMs - 1) / 72000000) * 14400000 : 0;
+    this.totalTime = this.msToTime(offSet, true);
 
     return results;
   }
