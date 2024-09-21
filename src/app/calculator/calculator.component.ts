@@ -19,6 +19,9 @@ export class CalculatorComponent {
   public selectedProfession: string = '';
   public noResourcesError: string = '';
   public totalTime: string = '';
+  private customFarmTimeHr: number = 20;
+  public customFarmTimeMs: number = this.customFarmTimeHr * 60 * 60 * 1000;
+  public idleFarmTimeMs: number = (24 - this.customFarmTimeHr) * 60 * 60 * 1000;
 
   private woodcutting: IMaterial[] = [];
   private mining: IMaterial[] = [];
@@ -224,7 +227,12 @@ export class CalculatorComponent {
     // Smelting, Cooking and Forge needs to take into consideration time from Woodcutting, Mining and Fishing
     let currentXP = this.xp_needed[currentLevel - 1] - expNeeded;
     let xpToNextLevel = this.xp_needed[currentLevel - 1] - currentXP;
-    if (xpToNextLevel <= 0) xpToNextLevel = 0; // Handle edge case where current XP might exceed required XP
+    let remainingXp = 0;
+    // Handle edge case where current XP might exceed required XP
+    if (xpToNextLevel <= 0) {
+      xpToNextLevel = 0;
+      remainingXp = Math.abs(this.xp_needed[currentLevel - 1] - currentXP);
+    }
 
     while (currentLevel < targetLevel) {
       // Get all resources that are available at this level
@@ -302,12 +310,12 @@ export class CalculatorComponent {
         }));
       }
 
-      // TODO: remaining XP
+      remainingXp = Math.abs(xpToNextLevel - materialNeeded * currentMaterialXP);
       // Move to the next level
       currentLevel += 1;
 
       if (currentLevel <= targetLevel) {
-        xpToNextLevel = this.xp_needed[currentLevel - 1];
+        xpToNextLevel = this.xp_needed[currentLevel - 1] - remainingXp;
         // Handle edge case
         if (xpToNextLevel <= 0) xpToNextLevel = 0;
       }
@@ -328,7 +336,7 @@ export class CalculatorComponent {
       results.push(materialToUse);
     }
 
-    var offSet = totalTimeMs > 0 ? totalTimeMs + Math.floor((totalTimeMs - 1) / 72000000) * 14400000 : 0;
+    var offSet = totalTimeMs > 0 ? totalTimeMs + Math.floor((totalTimeMs - 1) / this.customFarmTimeMs) * this.idleFarmTimeMs : 0;
     this.totalTime = this.msToTime(offSet, true);
 
     return results;
